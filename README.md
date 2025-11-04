@@ -14,19 +14,15 @@ bun test
 
 ## Running the Web UI
 
-You need **two servers** running simultaneously:
+Simply run from the root directory:
 
-**Terminal 1 - Plugin Server (port 3014):**
 ```bash
-cd packages/_plugin_template
-npm run dev
+bun run dev
 ```
 
-**Terminal 2 - Web Server (port 3001):**
-```bash
-cd apps/web
-npm run dev
-```
+This will start both servers simultaneously:
+- **Plugin Server** on port 3014
+- **Web Server** on port 3001
 
 Open http://localhost:3001 in your browser.
 
@@ -49,16 +45,3 @@ DATA_PROVIDER_TIMEOUT=30000
 | Assets | `/swap/tokens` | Across API |
 | Volume | `/bridge/19` | DefiLlama API |
 
-## Architecture
-
-- **Plugin Server**: Module federation remote at port 3014
-- **Web Server**: Next.js app at port 3001
-- **Runtime**: `packages/api/src/runtime.ts` loads plugin with ID `@across/data-provider`
-
-## Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| 500 errors | Check both servers are running |
-| Empty data | Verify token addresses are 42 characters |
-| Port in use | `pkill -f "next dev"` or `pkill -f rspack` |
