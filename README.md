@@ -6,10 +6,10 @@ Data provider plugin for Across Protocol bridge metrics.
 
 ```bash
 # Install dependencies
-bun install
+npm install
 
 # Run tests
-bun test
+npm test
 ```
 
 ## Running the Web UI
@@ -17,7 +17,7 @@ bun test
 Simply run from the root directory:
 
 ```bash
-bun run dev
+npm run dev
 ```
 
 This will start both servers simultaneously:
