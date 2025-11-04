@@ -2,42 +2,63 @@
 
 Data provider plugin for Across Protocol bridge metrics.
 
-## Provider
-
-- **Across Protocol**: [across.to](https://across.to/)
-- **API**: [Across v2 API](https://docs.across.to/v/v3-deprecated/api-reference/v2-api)
-
-## Data Sources
-
-| Metric | Endpoint | Source |
-| :--- | :--- | :--- |
-| Rates & Fees | `/suggested-fees` | Across API |
-| Liquidity | `/limits` | Across API |
-| Assets | `/swap/tokens` | Across API |
-| Volume | `/bridge/across` | DefiLlama API |
-
-## Setup
+## Quick Start
 
 ```bash
-# Install
+# Install dependencies
 bun install
-
-# Run dev server
-bun dev
 
 # Run tests
 bun test
 ```
 
+## Running the Web UI
+
+You need **two servers** running simultaneously:
+
+**Terminal 1 - Plugin Server (port 3014):**
+```bash
+cd packages/_plugin_template
+npm run dev
+```
+
+**Terminal 2 - Web Server (port 3001):**
+```bash
+cd apps/web
+npm run dev
+```
+
+Open http://localhost:3001 in your browser.
+
 ## Configuration
 
-Optional `.env` variables:
+Create `apps/web/.env`:
 
-- `ACROSS_BASE_URL` - API base URL (default: `https://across.to/api/v2`)
-- `ACROSS_TIMEOUT` - Request timeout in ms (default: `15000`)
+```bash
+DATA_PROVIDER_API_KEY=
+DATA_PROVIDER_BASE_URL=https://app.across.to/api
+DATA_PROVIDER_TIMEOUT=30000
+```
 
-## Features
+## Data Sources
 
-- Automatic retries with exponential backoff
-- Rate limiting with token bucket algorithm
-- Price caching
+| Metric | Endpoint | Source |
+|--------|----------|--------|
+| Rates & Fees | `/suggested-fees` | Across API |
+| Liquidity | `/limits` | Across API |
+| Assets | `/swap/tokens` | Across API |
+| Volume | `/bridge/19` | DefiLlama API |
+
+## Architecture
+
+- **Plugin Server**: Module federation remote at port 3014
+- **Web Server**: Next.js app at port 3001
+- **Runtime**: `packages/api/src/runtime.ts` loads plugin with ID `@across/data-provider`
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| 500 errors | Check both servers are running |
+| Empty data | Verify token addresses are 42 characters |
+| Port in use | `pkill -f "next dev"` or `pkill -f rspack` |
