@@ -22,7 +22,7 @@ export default function Home() {
   // Form state for routes and notionals
   const [routes, setRoutes] = useState([
     { source: { chainId: "1", assetId: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", symbol: "USDC", decimals: 6 },
-      destination: { chainId: "137", assetId: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", symbol: "USDC", decimals: 6 } }
+      destination: { chainId: "137", assetId: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359", symbol: "USDC", decimals: 6 } }
   ]);
   const [notionals, setNotionals] = useState(["1000000", "10000000"]);
   const [includeWindows, setIncludeWindows] = useState(["24h"]);

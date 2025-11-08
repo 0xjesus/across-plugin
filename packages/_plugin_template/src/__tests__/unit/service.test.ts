@@ -1,37 +1,7 @@
 import { Effect } from "every-plugin/effect";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { DataProviderService } from "../../service";
-
-// Real Across routes for testing
-const ETHEREUM_USDC_TO_POLYGON = {
-  source: {
-    chainId: "1",
-    assetId: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-    symbol: "USDC",
-    decimals: 6,
-  },
-  destination: {
-    chainId: "137",
-    assetId: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
-    symbol: "USDC",
-    decimals: 6,
-  }
-};
-
-const OPTIMISM_ETH_TO_ARBITRUM = {
-  source: {
-    chainId: "10",
-    assetId: "0x4200000000000000000000000000000000000006",
-    symbol: "WETH",
-    decimals: 18,
-  },
-  destination: {
-    chainId: "42161",
-    assetId: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
-    symbol: "WETH",
-    decimals: 18,
-  }
-};
+import { ETHEREUM_USDC_TO_POLYGON, OPTIMISM_ETH_TO_ARBITRUM } from "../fixtures/routes";
 
 describe("DataProviderService - Unit Tests", () => {
   let service: DataProviderService;
